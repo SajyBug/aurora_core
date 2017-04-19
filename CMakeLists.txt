@@ -15,6 +15,20 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
+add_message_files(
+   FILES
+   heart.msg
+)
+
+add_service_files(
+   FILES
+   ReadTakeoffGps.srv
+)
+
+generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 #include_directories(${catkin_INCLUDE_DIRS})
 catkin_package(CATKIN_DEPENDS message_runtime) 
@@ -78,5 +92,5 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${catkin_INCLUDE_DIRS})
 # build!
 add_executable(aurora_core ${GUI_SOURCE_FILES} ${GUI_RESOURCE_FILES_CPP} ${GUI_HEADER_FILES_HPP})
 target_link_libraries(aurora_core ${catkin_LIBRARIES} ${QT_LIBRARIES} ${ROS_LIBRARIES} ${catkin_LIBRARIES})
-#add_dependencies(aurora_core ${PROJECT_NAME}_gencpp)
+add_dependencies(aurora_core ${PROJECT_NAME}_gencpp)
 
